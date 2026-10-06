@@ -48,6 +48,4 @@ O valor `123 456` foi aceito e o pedido foi criado.
 Caso a regra de negócio exija nomes compostos por caracteres alfabéticos, a validação atual pode permitir dados inconsistentes no cadastro do pedido.
 
 ## Evidência
-
-- [Vídeo UI](https://github.com/user-attachments/assets/0c74f744-a679-4452-a36f-d75c3c92e9ff)
-- [Imagem API](https://github.com/user-attachments/assets/0a5f850b-557f-4430-a82e-ed4a16c9be3c)
+- [Imagem](https://github.com/user-attachments/assets/0a5f850b-557f-4430-a82e-ed4a16c9be3c)
