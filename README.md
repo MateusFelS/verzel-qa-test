@@ -81,9 +81,9 @@ npx playwright show-report          # abre o relatório HTML da última execuç�
 
 | # | Cenário | Arquivo |
 | --- | --- | --- |
-| 1 | _(descreva o cenário)_ | `tests/...spec.ts` |
-| 2 | _(descreva o cenário)_ | `tests/...spec.ts` |
-| 3 | _(descreva o cenário)_ | `tests/...spec.ts` |
+| 1 | Cupom Válido - BEMVINDO10 | `tests/ct-001-cupom-valido.spec.ts` |
+| 2 | Recalcular Desconto ao Alterar Quantidade | `tests/ct-012-recalculo-cupom.spec.ts` |
+| 3 | Desconto Não Cancela Frete Grátis | `tests/ct-020-frete-gratis.spec.ts` |
 
 ---
 
