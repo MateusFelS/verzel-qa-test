@@ -8,6 +8,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./automacao-verzel
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,6 +21,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: ./automacao-verzel/package-lock.json
 
       - name: Install dependencies
         run: npm ci
