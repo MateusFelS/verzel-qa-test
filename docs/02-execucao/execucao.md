@@ -1,11 +1,11 @@
 # Execução de Testes: Verzel Store (VZS-142 v2.3.0)
 
-> **Ambiente:** https://verzel-store.qa-test-verzel-store.workers.dev/
-> **Executor:** Mateus Felipe dos Santos
-> **Data:** 06/10/2026
-> **Navegador:** Brave v1.95.104
-> **Teste de API:** Postman
-> **SO:** Windows 11
+> **Ambiente:** https://verzel-store.qa-test-verzel-store.workers.dev/  
+> **Executor:** Mateus Felipe dos Santos  
+> **Data:** 06/10/2026  
+> **Navegador:** Brave v1.95.104  
+> **Teste de API:** Postman  
+> **SO:** Windows 11  
 > **Legenda:** ✅ Passou · ❌ Falhou · ⚠️ Observação · ⏳ Pendente
 
 ---
