@@ -8,7 +8,7 @@ Validação da entrega **cupom de desconto e frete grátis** da Verzel Store (lo
 | Documentação da entrega | https://verzel-store.qa-test-verzel-store.workers.dev/documentacao |
 | API | https://verzel-store.qa-test-verzel-store.workers.dev/api |
 
-[![Playwright Tests](https://github.com/MateusFelS/verzel-qa-test/actions/workflows/testes.yml/badge.svg)](https://github.com/MateusFelS/verzel-qa-test/actions) <!-- AJUSTAR: troque NOME-DO-WORKFLOW.yml pelo nome do arquivo em .github/workflows -->
+[![Playwright Tests](https://github.com/MateusFelS/verzel-qa-test/actions/workflows/testes.yml/badge.svg)](https://github.com/MateusFelS/verzel-qa-test/actions) 
 
 ---
 
