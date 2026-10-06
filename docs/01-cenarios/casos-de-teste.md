@@ -356,7 +356,7 @@ Cenário: Aumentar além de 5 pelo botão
   E a interface informa o limite de 5 unidades por produto
 ```
 
-### CT-026 | CA10 | UI | Média
+### CT-025 | CA10 | UI | Média
 Adicionar pela vitrine um produto que já está no limite.
 
 ```gherkin
@@ -366,7 +366,7 @@ Cenário: Adicionar pela vitrine com 5 unidades no carrinho
   Então a quantidade permanece 5
 ```
 
-### CT-027 | CA10 | UI | Baixa
+### CT-026 | CA10 | UI | Baixa
 O limite é por produto, não por carrinho.
 
 ```gherkin
@@ -375,7 +375,7 @@ Cenário: Limite por produto
   Então ambos os itens são aceitos
 ```
 
-### CT-028 | CA11 | API | Alta
+### CT-027 | CA11 | API | Alta
 Valores monetários com no máximo 2 casas decimais.
 
 ```gherkin
@@ -397,7 +397,7 @@ Esquema do Cenário: Arredondamento com cupom
 ```
 > Com os preços atuais, 10% nunca gera 3ª casa decimal. O risco real é imprecisão de ponto flutuante (ex.: `59.9 * 3 = 179.70000000000002` em JS). Verificar a resposta bruta do JSON.
 
-### CT-029 | CA11 | UI | Média
+### CT-028 | CA11 | UI | Média
 Formatação na interface.
 
 ```gherkin
@@ -412,7 +412,7 @@ Cenário: Formato monetário brasileiro
 
 ## 4. Pedido e regras pré-existentes (Geral)
 
-### CT-030 | Geral, CA01 | API/UI | Alta
+### CT-029 | Geral, CA01 | API/UI | Alta
 Pedido válido com cupom.
 
 ```gherkin
@@ -425,7 +425,7 @@ Cenário: Confirmar pedido com cupom
   E o CEP retornado é "01310100"
 ```
 
-### CT-031 | Geral | API/UI | Alta
+### CT-030 | Geral | API/UI | Alta
 Pedido válido sem cupom.
 
 ```gherkin
@@ -435,7 +435,7 @@ Cenário: Confirmar pedido sem cupom
   E o desconto é 0 e o total é 119.9
 ```
 
-### CT-032 | CA03 | API | Alta
+### CT-031 | CA03 | API | Alta
 Cupom inexistente em pedido gera erro (diferente do cálculo).
 
 ```gherkin
@@ -445,7 +445,7 @@ Cenário: Pedido com cupom inexistente
   E o código é "CUPOM_INVALIDO"
 ```
 
-### CT-033 | CA04 | API | Alta
+### CT-032 | CA04 | API | Alta
 Cupom expirado em pedido.
 
 ```gherkin
@@ -455,7 +455,7 @@ Cenário: Pedido com cupom expirado
   E o código é "CUPOM_EXPIRADO"
 ```
 
-### CT-034 | CA02 | API | Média
+### CT-033 | CA02 | API | Média
 Normalização do cupom também no pedido.
 
 ```gherkin
@@ -465,7 +465,7 @@ Cenário: Cupom com caixa e espaços no pedido
   E o desconto é 10
 ```
 
-### CT-035 | Geral | API/UI | Alta
+### CT-034 | Geral | API/UI | Alta
 Nome precisa ter nome e sobrenome.
 
 ```gherkin
@@ -482,7 +482,7 @@ Esquema do Cenário: Validação do nome
     | "   Maria"         | rejeitado |
 ```
 
-### CT-036 | Geral | API/UI | Alta
+### CT-035 | Geral | API/UI | Alta
 E-mail com formato válido.
 
 ```gherkin
@@ -500,7 +500,7 @@ Esquema do Cenário: Validação do e-mail
     | ""                 | rejeitado |
 ```
 
-### CT-037 | Geral | API/UI | Alta
+### CT-036 | Geral | API/UI | Alta
 CEP com 8 dígitos, com ou sem hífen.
 
 ```gherkin
@@ -519,7 +519,7 @@ Esquema do Cenário: Validação do CEP
     | ""          | rejeitado |
 ```
 
-### CT-038 | Geral | API | Média
+### CT-037 | Geral | API | Média
 Detalhes por campo em DADOS_INVALIDOS.
 
 ```gherkin
@@ -530,7 +530,7 @@ Cenário: Vários dados inválidos de uma vez
   E "campos" lista os 3 campos inválidos
 ```
 
-### CT-039 | Geral | UI | Baixa
+### CT-038 | Geral | UI | Baixa
 Não existe pagamento online.
 
 ```gherkin
@@ -543,7 +543,7 @@ Cenário: Fluxo sem etapa de pagamento
 
 ## 5. Contrato da API e erros
 
-### CT-040 | API | Média
+### CT-039 | API | Média
 ```gherkin
 Cenário: Listar produtos
   Quando faço GET em "/api/produtos"
@@ -552,7 +552,7 @@ Cenário: Listar produtos
   E os preços batem com a tabela de dados de teste
 ```
 
-### CT-041 | API | Média
+### CT-040 | API | Média
 ```gherkin
 Esquema do Cenário: Consultar produto por id
   Quando faço GET em "/api/produtos/<id>"
@@ -567,7 +567,7 @@ Esquema do Cenário: Consultar produto por id
 ```
 > `p001` em minúsculas: a documentação não define. Registrar o comportamento observado.
 
-### CT-042 | API | Baixa
+### CT-041 | API | Baixa
 ```gherkin
 Cenário: Rota inexistente
   Quando faço GET em "/api/xyz"
@@ -575,7 +575,7 @@ Cenário: Rota inexistente
   E o código é "ROTA_NAO_ENCONTRADA"
 ```
 
-### CT-043 | API | Baixa
+### CT-042 | API | Baixa
 ```gherkin
 Cenário: Método não permitido
   Quando faço GET em "/api/carrinho/calcular"
@@ -583,7 +583,7 @@ Cenário: Método não permitido
   E o código é "METODO_NAO_PERMITIDO"
 ```
 
-### CT-044 | API | Média
+### CT-043 | API | Média
 ```gherkin
 Cenário: JSON malformado
   Quando faço POST em "/api/carrinho/calcular" com o corpo "{ itens: "
@@ -591,7 +591,7 @@ Cenário: JSON malformado
   E o código é "JSON_INVALIDO"
 ```
 
-### CT-045 | API | Alta
+### CT-044 | API | Alta
 ```gherkin
 Esquema do Cenário: Corpo com JSON válido, mas inadequado
   Quando faço POST em "/api/carrinho/calcular" com o corpo <corpo>
@@ -608,14 +608,14 @@ Esquema do Cenário: Corpo com JSON válido, mas inadequado
 ```
 > `[1,2,3]` é JSON válido, mas não é um objeto. A doc diz que o 400 vale para "não é um objeto JSON válido".
 
-### CT-046 | API | Média
+### CT-045 | API | Média
 ```gherkin
 Cenário: Cálculo não grava estado
   Quando calculo o mesmo carrinho duas vezes seguidas
   Então as duas respostas são idênticas
 ```
 
-### CT-047 | CA03, CA04 | API | Alta
+### CT-046 | CA03, CA04 | API | Alta
 Cupom inválido/expirado no cálculo não gera erro.
 
 ```gherkin
@@ -636,7 +636,7 @@ Esquema do Cenário: Cupom problemático em /api/carrinho/calcular
 
 ## 6. Carrinho e checkout (casos adicionais, derivados do teste exploratório)
 
-### CT-048 | Geral | UI | Alta
+### CT-047 | Geral | UI | Alta
 Botão de adicionar produto ao carrinho.
 
 ```gherkin
@@ -647,7 +647,7 @@ Cenário: Adicionar produto pela vitrine
   E o contador do carrinho (se existir) é atualizado
 ```
 
-### CT-049 | Geral | UI | Alta
+### CT-048 | Geral | UI | Alta
 Conteúdo do carrinho.
 
 ```gherkin
@@ -659,7 +659,7 @@ Cenário: Produtos e preços corretos no carrinho
   E o total de cada linha é preço unitário vezes quantidade
 ```
 
-### CT-050 | Geral | UI | Alta
+### CT-049 | Geral | UI | Alta
 Botões de mais e menos.
 
 ```gherkin
@@ -672,7 +672,7 @@ Cenário: Alterar quantidade com + e -
   E o resumo do pedido acompanha cada alteração
 ```
 
-### CT-051 | Geral | UI | Média | Exploratório
+### CT-050 | Geral | UI | Média | Exploratório
 Botão "-" quando a quantidade é 1.
 
 ```gherkin
@@ -683,7 +683,7 @@ Cenário: Diminuir a partir de 1 unidade
   E a quantidade nunca fica em 0 ou negativa
 ```
 
-### CT-052 | Geral | UI | Alta
+### CT-051 | Geral | UI | Alta
 Soma do resumo do pedido.
 
 ```gherkin
@@ -694,7 +694,7 @@ Cenário: Resumo do pedido confere com a fórmula
   E o subtotal é a soma de preço unitário vezes quantidade de cada item
 ```
 
-### CT-053 | Geral | UI | Alta
+### CT-052 | Geral | UI | Alta
 Remoção de itens.
 
 ```gherkin
@@ -706,7 +706,7 @@ Cenário: Remover itens um a um e esvaziar o carrinho
   E o frete e o cupom não deixam valores residuais
 ```
 
-### CT-054 | Geral | UI | Alta
+### CT-053 | Geral | UI | Alta
 Campos obrigatórios do checkout.
 
 ```gherkin
@@ -723,7 +723,7 @@ Esquema do Cenário: Campo obrigatório vazio
     | CEP   |
 ```
 
-### CT-055 | Geral | UI/API | Média | Exploratório
+### CT-054 | Geral | UI/API | Média | Exploratório
 Nome com caracteres que não são letras.
 
 ```gherkin
@@ -740,7 +740,7 @@ Esquema do Cenário: Nome sem letras
 ```
 > A documentação só exige "nome e sobrenome". Interpretação defensável: duas palavras bastam. Interpretação de negócio: deveria conter letras.
 
-### CT-056 | Geral, CA05 | UI | Baixa | Exploratório
+### CT-055 | Geral, CA05 | UI | Baixa | Exploratório
 Estado do carrinho e do cupom depois de finalizar a compra.
 
 ```gherkin
@@ -757,25 +757,25 @@ Cenário: Após confirmar o pedido
 
 | CA | Descrição resumida | Casos de teste |
 |---|---|---|
-| CA01 | BEMVINDO10 = 10% sobre o subtotal | CT-001, 002, 012, 013, 030 |
-| CA02 | Código sem distinção de caixa e sem espaços nas pontas | CT-003, 004, 008, 034 |
-| CA03 | Cupom inexistente: "Cupom inválido." | CT-005, 006, 032, 047 |
-| CA04 | Cupom expirado: "Cupom expirado." | CT-007, 008, 033, 047 |
-| CA05 | Um cupom por vez | CT-009, 010, 011, 056 |
+| CA01 | BEMVINDO10 = 10% sobre o subtotal | CT-001, 002, 012, 013, 029 |
+| CA02 | Código sem distinção de caixa e sem espaços nas pontas | CT-003, 004, 008, 033 |
+| CA03 | Cupom inexistente: "Cupom inválido." | CT-005, 006, 031, 046 |
+| CA04 | Cupom expirado: "Cupom expirado." | CT-007, 008, 032, 046 |
+| CA05 | Um cupom por vez | CT-009, 010, 011, 055 |
 | CA06 | Frete grátis a partir de R$ 200,00 (inclusive) | CT-014, 015 |
 | CA07 | Frete R$ 19,90 e valor faltante | CT-014, 016, 017, 018 |
 | CA08 | Frete usa o subtotal antes do desconto | CT-019, 020 |
 | CA09 | Desconto não incide sobre o frete | CT-021 |
-| CA10 | Máximo 5 unidades por produto (UI e API) | CT-022, 023, 024, 025, 026, 027 |
-| CA11 | Arredondamento em 2 casas | CT-028, 029 |
-| Geral | Pedido e regras pré-existentes (nome, e-mail, CEP, pagamento) | CT-030, 031, 035, 036, 037, 038, 039 |
-| Geral | Carrinho e checkout (vitrine, +/−, resumo, remoção, obrigatórios) | CT-048, 049, 050, 051, 052, 053, 054, 055 |
-| Geral | Contrato da API e códigos de erro | CT-040 a 047 |
+| CA10 | Máximo 5 unidades por produto (UI e API) | CT-022, 023, 024, 025, 026 |
+| CA11 | Arredondamento em 2 casas | CT-027, 028 |
+| Geral | Pedido e regras pré-existentes (nome, e-mail, CEP, pagamento) | CT-029, 030, 034, 035, 036, 037, 038 |
+| Geral | Carrinho e checkout (vitrine, +/−, resumo, remoção, obrigatórios) | CT-047, 048, 049, 050, 051, 052, 053, 054 |
+| Geral | Contrato da API e códigos de erro | CT-039 a 046 |
 
-**Total: 56 casos.**
+**Total: 55 casos.**
 
 | Tipo | Quantidade |
 |---|---|
-| Somente UI | 22 |
+| Somente UI | 21 |
 | Somente API | 16 |
 | UI e API | 18 |
