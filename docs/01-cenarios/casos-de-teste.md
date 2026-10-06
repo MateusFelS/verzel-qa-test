@@ -6,7 +6,7 @@
 - **CA**: critério de aceite coberto (ou "Geral" para regras fora dos CAs).
 - **Tipo**: `UI`, `API` ou `UI/API`.
 - **Prioridade**: Alta (regra de negócio central), Média, Baixa.
-- **Exploratório**: o resultado esperado depende de interpretação. Ver `ambiguidades.md`.
+- **Exploratório**: o resultado esperado depende de interpretação.
 
 **Produtos usados:** P001 R$ 59,90 · P002 R$ 139,90 · P003 R$ 189,90 · P004 R$ 49,90 · P005 R$ 100,00 · P006 R$ 29,90 · P007 R$ 229,90 · P008 R$ 50,00
 **Cupons:** BEMVINDO10 (10%, válido) · VERAO2026 (15%, expirado em 31/03/2026)
@@ -682,7 +682,6 @@ Cenário: Diminuir a partir de 1 unidade
   Então o item é removido OU o botão está desabilitado
   E a quantidade nunca fica em 0 ou negativa
 ```
-> Registrar o comportamento observado em `ambiguidades.md`.
 
 ### CT-052 | Geral | UI | Alta
 Soma do resumo do pedido.
