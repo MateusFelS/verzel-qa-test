@@ -1,9 +1,12 @@
 # Execução de Testes: Verzel Store (VZS-142 v2.3.0)
 
-**Ambiente:** https://verzel-store.qa-test-verzel-store.workers.dev/
-**Executor:** Mateus Felipe dos Santos · **Data:** 06/10/2026 · **Navegador:** Brave v1.95.104 . **Teste de API:** Postman . **SO:** Windows 11
-
-**Legenda:** ✅ Passou · ❌ Falhou · ⚠️ Observação · ⏳ Pendente
+> **Ambiente:** https://verzel-store.qa-test-verzel-store.workers.dev/
+> **Executor:** Mateus Felipe dos Santos
+> **Data:** 06/10/2026
+> **Navegador:** Brave v1.95.104
+> **Teste de API:** Postman
+> **SO:** Windows 11
+> **Legenda:** ✅ Passou · ❌ Falhou · ⚠️ Observação · ⏳ Pendente
 
 ---
 
@@ -60,16 +63,16 @@
 
 | ID | CA | Cenário | Pré-condição | Dados de Teste | Resultado Esperado | Resultado Obtido | Status | Prioridade |
 |----|----|---------|--------------|----------------|---------------------|-------------------|--------|------------|
-| CT-029 | Geral, CA01 | Pedido válido com cupom | Carrinho com 1x P005 | Maria Silva, maria@exemplo.com, 01310-100, BEMVINDO10 | Status 201, número VZ-000000, desconto 10, total 109,90, CEP "01310100" | | ⏳ Pendente | Alta |
+| CT-029 | Geral, CA01 | Pedido válido com cupom | Carrinho com 1x P005 | Maria Silva, maria@exemplo.com, 01310-100, BEMVINDO10 | Status 201, número VZ-000000, desconto 10, total 109,90, CEP "01310100" | Pedido criado com status 201, número no formato VZ-000000, desconto R$ 10,00, total R$ 109,90 e CEP normalizado para "01310100" | ✅ Passou | Alta |
 | CT-030 | Geral | Pedido válido sem cupom | Carrinho com 1x P005 | Dados válidos, sem cupom | Status 201, desconto 0, total 119,90 | Compra finalizada normalmente com dados corretos (UI) | ✅ Passou | Alta |
-| CT-031 | CA03 | Pedido com cupom inexistente (API) | Nenhuma | cupom: XYZ123 | 422 CUPOM_INVALIDO | | ⏳ Pendente | Alta |
-| CT-032 | CA04 | Pedido com cupom expirado (API) | Nenhuma | cupom: VERAO2026 | 422 CUPOM_EXPIRADO | | ⏳ Pendente | Alta |
-| CT-033 | CA02 | Normalização do cupom no pedido (API) | Nenhuma | cupom: "  bemvindo10 " | 201 e desconto 10 | | ⏳ Pendente | Média |
-| CT-034 | Geral | Validação do nome | Carrinho com 1 item | "Maria Silva", "Maria Souza Lima", "Maria", "", "   Maria" | Os dois primeiros aceitos, os demais rejeitados | | ⏳ Pendente | Alta |
+| CT-031 | CA03 | Pedido com cupom inexistente (API) | Nenhuma | cupom: XYZ123 | 422 CUPOM_INVALIDO | A API retornou status 200 em vez de 422 CUPOM_INVALIDO. A resposta informa que o cupom não foi aplicado, mas o pedido não é rejeitado | ❌ Falhou | Alta |
+| CT-032 | CA04 | Pedido com cupom expirado (API) | Nenhuma | cupom: VERAO2026 | 422 CUPOM_EXPIRADO | A API retornou status 200 em vez de 422 CUPOM_EXPIRADO. A resposta informa que o cupom não foi aplicado, mas o pedido não é rejeitado | ❌ Falhou | Alta |
+| CT-033 | CA02 | Normalização do cupom no pedido (API) | Nenhuma | cupom: "  bemvindo10 " | 201 e desconto 10 | Pedido criado com status 201 e desconto de R$ 10,00, mesmo com o cupom enviado com espaços e em minúsculas | ✅ Passou | Média |
+| CT-034 | Geral | Validação do nome | Carrinho com 1 item | "Maria Silva", "Maria Souza Lima", "Maria", "", "   Maria", "123 456" | Os dois primeiros aceitos, os demais rejeitados | Os valores previstos se comportaram como esperado. Porém "123 456" foi aceito e o pedido foi criado com esse nome, sem exigir letras (mesmo comportamento do CT-054 na UI) | ⚠️ Observação | Média |
 | CT-035 | Geral | Validação do e-mail | Carrinho com 1 item | maria@exemplo.com, maria@exemplo, mariaexemplo.com, @exemplo.com, maria@, "" | Só o primeiro aceito | E-mail aceitou apenas valores corretos (UI). API não testada | ✅ Passou | Alta |
 | CT-036 | Geral | Validação do CEP | Carrinho com 1 item | 01310-100, 01310100, 0131-0100, 1310100, 013101000, 0131010a, "" | Só os dois primeiros aceitos | CEP aceitou apenas valores corretos (UI). API não testada | ✅ Passou | Alta |
-| CT-037 | Geral | Vários dados inválidos de uma vez (API) | Nenhuma | nome "Maria", e-mail "x", CEP "123" | 422 DADOS_INVALIDOS com 3 campos em "campos" | | ⏳ Pendente | Média |
-| CT-038 | Geral | Sem etapa de pagamento online | Carrinho com 1 item | Finalizar a compra | Não existe pagamento online | | ⏳ Pendente | Baixa |
+| CT-037 | Geral | Vários dados inválidos de uma vez (API) | Nenhuma | nome "Maria", e-mail "x", CEP "123" | 422 DADOS_INVALIDOS com 3 campos em "campos" | A API retornou 422 DADOS_INVALIDOS com os 3 campos (nome, e-mail e CEP) listados em "campos" | ✅ Passou | Média |
+| CT-038 | Geral | Sem etapa de pagamento online | Carrinho com 1 item | Finalizar a compra | Não existe pagamento online | Não existe etapa de pagamento online. A compra é finalizada sem solicitar dados de pagamento | ✅ Passou | Baixa |
 
 ---
 
@@ -77,14 +80,14 @@
 
 | ID | CA | Cenário | Pré-condição | Dados de Teste | Resultado Esperado | Resultado Obtido | Status | Prioridade |
 |----|----|---------|--------------|----------------|---------------------|-------------------|--------|------------|
-| CT-039 | API | Listar produtos | Nenhuma | GET /api/produtos | 200 com 8 produtos (id, nome, descricao, categoria, preco) e preços conforme a tabela | | ⏳ Pendente | Média |
-| CT-040 | API | Consultar produto por id | Nenhuma | P001, P008, P999, p001 | 200, 200, 404 e 404 (p001 não definido na doc) | | ⏳ Pendente | Média |
-| CT-041 | API | Rota inexistente | Nenhuma | GET /api/xyz | 404 ROTA_NAO_ENCONTRADA | | ⏳ Pendente | Baixa |
-| CT-042 | API | Método não permitido | Nenhuma | GET /api/carrinho/calcular | 405 METODO_NAO_PERMITIDO | | ⏳ Pendente | Baixa |
-| CT-043 | API | JSON malformado | Nenhuma | POST com corpo "{ itens: " | 400 JSON_INVALIDO | | ⏳ Pendente | Média |
-| CT-044 | API | JSON válido, mas inadequado | Nenhuma | {}, itens vazio, item string, produto inexistente, item duplicado, [1,2,3] | ITENS_OBRIGATORIOS (x2), ITEM_INVALIDO, PRODUTO_NAO_ENCONTRADO, ITEM_DUPLICADO (todos 422) e JSON_INVALIDO (400) | | ⏳ Pendente | Alta |
-| CT-045 | API | Cálculo não grava estado | Nenhuma | Mesma requisição duas vezes | Respostas idênticas | | ⏳ Pendente | Média |
-| CT-046 | CA03, CA04 | Cupom inválido/expirado no cálculo | Nenhuma | XYZ123 e VERAO2026 em /calcular | 200, aplicado=false, mensagens "Cupom inválido." e "Cupom expirado.", desconto 0 | | ⏳ Pendente | Alta |
+| CT-039 | API | Listar produtos | Nenhuma | GET /api/produtos | 200 com 8 produtos (id, nome, descricao, categoria, preco) e preços conforme a tabela | GET /api/produtos retornou 200 com 8 produtos (id, nome, descricao, categoria, preco) e preços conforme a tabela | ✅ Passou | Média |
+| CT-040 | API | Consultar produto por id | Nenhuma | P001, P008, P999, p001 | 200, 200, 404 e 404 (p001 não definido na doc) | P001 e P008 retornaram 200. P999 e p001 retornaram 404 | ✅ Passou | Média |
+| CT-041 | API | Rota inexistente | Nenhuma | GET /api/xyz | 404 ROTA_NAO_ENCONTRADA | GET /api/xyz retornou 404 ROTA_NAO_ENCONTRADA | ✅ Passou | Baixa |
+| CT-042 | API | Método não permitido | Nenhuma | GET /api/carrinho/calcular | 405 METODO_NAO_PERMITIDO | GET /api/carrinho/calcular retornou 405 METODO_NAO_PERMITIDO | ✅ Passou | Baixa |
+| CT-043 | API | JSON malformado | Nenhuma | POST com corpo "{ itens: " | 400 JSON_INVALIDO | O corpo "{ itens: " retornou 400 JSON_INVALIDO | ✅ Passou | Média |
+| CT-044 | API | JSON válido, mas inadequado | Nenhuma | {}, itens vazio, item string, produto inexistente, item duplicado, [1,2,3] | ITENS_OBRIGATORIOS (x2), ITEM_INVALIDO, PRODUTO_NAO_ENCONTRADO, ITEM_DUPLICADO (todos 422) e JSON_INVALIDO (400) | Retornos conforme o esperado: ITENS_OBRIGATORIOS (x2), ITEM_INVALIDO, PRODUTO_NAO_ENCONTRADO e ITEM_DUPLICADO (todos 422) e JSON_INVALIDO (400) | ✅ Passou | Alta |
+| CT-045 | API | Cálculo não grava estado | Nenhuma | Mesma requisição duas vezes | Respostas idênticas | As duas requisições idênticas retornaram respostas iguais, sem gravar estado | ✅ Passou | Média |
+| CT-046 | CA03, CA04 | Cupom inválido/expirado no cálculo | Nenhuma | XYZ123 e VERAO2026 em /calcular | 200, aplicado=false, mensagens "Cupom inválido." e "Cupom expirado.", desconto 0 | /calcular retornou 200 com aplicado=false, mensagens "Cupom inválido." e "Cupom expirado." e desconto 0 | ✅ Passou | Alta |
 
 ---
 
@@ -95,7 +98,7 @@
 | CT-047 | Geral | Adicionar produto pela vitrine | Carrinho vazio | Clicar em adicionar em P001 | Produto no carrinho com quantidade 1 | Botão de adicionar funciona corretamente | ✅ Passou | Alta |
 | CT-048 | Geral | Produtos e preços corretos no carrinho | Produtos adicionados | P001 e P004 | Itens escolhidos, preços 59,90 e 49,90, total da linha correto | Produtos e preços corretos no carrinho | ✅ Passou | Alta |
 | CT-049 | Geral | Botões "+" e "−" | 2x P001 no carrinho | "+" uma vez, "−" duas vezes | 3 un. (R$ 179,70), depois 1 un. (R$ 59,90), resumo acompanha | Botões alteram a quantidade e o preço acompanha corretamente | ✅ Passou | Alta |
-| CT-050 | Geral | "−" com quantidade 1 | 1x P001 no carrinho | Clicar em "−" | Item removido ou botão desabilitado, nunca quantidade 0 ou negativa | | ⏳ Pendente | Média |
+| CT-050 | Geral | "−" com quantidade 1 | 1x P001 no carrinho | Clicar em "−" | Item removido ou botão desabilitado, nunca quantidade 0 ou negativa | Ao clicar em "−" com quantidade 1, a quantidade não chegou a 0 nem ficou negativa | ✅ Passou | Média |
 | CT-051 | Geral | Soma do resumo do pedido | Itens variados | Visualizar o resumo | total = subtotal − desconto + frete | Soma do resumo correta, incluindo o frete | ✅ Passou | Alta |
 | CT-052 | Geral | Remover itens um a um e esvaziar | 3 produtos diferentes | Remover item a item | Resumo recalculado a cada remoção e estado vazio ao final | Remoção individual e esvaziar o carrinho funcionam corretamente | ✅ Passou | Alta |
 | CT-053 | Geral | Campos obrigatórios do checkout | 1 item no carrinho | Finalizar com nome, e-mail e CEP vazios | Compra não finalizada e mensagem de erro por campo | Campos obrigatórios não aceitam vazio e exibem mensagem de erro | ✅ Passou | Alta |
@@ -108,8 +111,8 @@
 
 | Status | Quantidade |
 |---|---|
-| ✅ Passou | 34 |
-| ❌ Falhou | 3 |
-| ⚠️ Observação | 2 |
-| ⏳ Pendente | 16 |
+| ✅ Passou | 47 |
+| ❌ Falhou | 5 |
+| ⚠️ Observação | 3 |
+| ⏳ Pendente | 0 |
 | **Total** | **55** |
