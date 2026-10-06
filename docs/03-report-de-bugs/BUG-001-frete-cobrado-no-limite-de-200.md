@@ -48,4 +48,4 @@ A regra de frete grátis é aplicada de forma inconsistente entre a interface e 
 
 ## Evidência
 
-- [Imagem](<img width="1600" height="933" alt="BUG-001-evidencia-frete-200" src="https://github.com/user-attachments/assets/ea04a601-f5b9-4e0e-b343-7afe996dbd34" />)
+- [Imagem](https://github.com/user-attachments/assets/ea04a601-f5b9-4e0e-b343-7afe996dbd34)
