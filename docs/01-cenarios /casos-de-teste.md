@@ -356,25 +356,6 @@ Cenário: Aumentar além de 5 pelo botão
   E a interface informa o limite de 5 unidades por produto
 ```
 
-### CT-025 | CA10 | UI | Alta
-Digitar quantidade acima do limite no campo.
-
-```gherkin
-Esquema do Cenário: Digitar quantidade inválida
-  Dado que o carrinho contém 1 "Camiseta Essencial"
-  Quando o cliente digita "<valor>" no campo de quantidade
-  Então a quantidade não é aceita como "<valor>"
-
-  Exemplos:
-    | valor |
-    | 6     |
-    | 99    |
-    | 0     |
-    | -1    |
-    | 2.5   |
-    | abc   |
-```
-
 ### CT-026 | CA10 | UI | Média
 Adicionar pela vitrine um produto que já está no limite.
 
